@@ -1,0 +1,75 @@
+.TH "quadratic_equation.h" 3 "Tue May 14 2024" "quadratic_equation" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+quadratic_equation.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBquadratic_equation_rc\fP { \fBQUADRATIC_EQUATION_INFINITE_ROOTS\fP = -3, \fBQUADRATIC_EQUATION_NO_ROOTS\fP = -2, \fBQUADRATIC_EQUATION_LINEAR\fP = -1, \fBQUADRATIC_EQUATION_COMPLEX_ROOTS\fP = 0, \fBQUADRATIC_EQUATION_REAL_ROOTS\fP = 1 }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBquadratic_equation_rc\fP \fBsolve_equation\fP (double a, double b, double c, double x0[static 1], double x1[static 1])"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBquadratic_equation_rc\fP"
+Quadratic equation outcomes 
+.PD 0
+
+.IP "\(bu" 2
+\fCQUADRATIC_EQUATION_INFINITE_ROOTS\fP -- corner case, all coefficients are equal to zero
+.PP
+.PD 0
+.IP "\(bu" 2
+\fCQUADRATIC_EQUATION_NO_ROOTS\fP -- corner case, only constant coefficient is not zero
+.PP
+.PD 0
+.IP "\(bu" 2
+\fCQUADRATIC_EQUATION_LINEAR\fP -- corner case, quadratic coefficient is zero, linear coefficient is not zero
+.PP
+.PD 0
+.IP "\(bu" 2
+\fCQUADRATIC_EQUATION_COMPLEX_ROOTS\fP -- equation has two complex roots
+.PP
+.PD 0
+.IP "\(bu" 2
+\fCQUADRATIC_EQUATION_REAL_ROOTS\fP -- equation has two real (possibly equal) roots 
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBquadratic_equation_rc\fP solve_equation (double a, double b, double c, double x0[static 1], double x1[static 1])"
+Find real roots of a quadratic equation with real coefficients
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP quadratic coefficient 
+.br
+\fIb\fP linear coefficient 
+.br
+\fIc\fP constant coefficient 
+.br
+\fIx0\fP (out parameter, non-NULL) where to store the smallest root 
+.br
+\fIx1\fP (out parameter, non-NULL) where to store the largest root
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Return code which classifies provided quadratic equation — value of \fBquadratic_equation_rc\fP type\&. \fCx0\fP and \fCx1\fP are populated with root values\&. If there are less than two solutions, remaining values are set to NAN\&.
+.RE
+.PP
+This function doesn't check input values for NANs and infinities\&. This function uses discriminant method, which may make results highly imprecise\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for quadratic_equation from the source code\&.
